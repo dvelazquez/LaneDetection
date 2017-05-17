@@ -29,19 +29,29 @@ while(True):
     # Capture frame-by-frame
     ret, img = cap.read()
 
-    cv2.createTrackbar('Lo Thresh', 'Tracker', 0, 255, nothing)
-    low_threshold = cv2.getTrackbarPos('Lo Thresh', 'Tracker')
-    cv2.createTrackbar('Hi Thresh', 'Tracker', 0, 255, nothing)
-    high_threshold = cv2.getTrackbarPos('Hi Thresh', 'Tracker')
-    cv2.createTrackbar('Min Line', 'Tracker', 0, 255, nothing)
-    minLineLength = cv2.getTrackbarPos('Min Line', 'Tracker')
-    cv2.createTrackbar('Max Line', 'Tracker', 0, 50, nothing)
-    maxLineGap = cv2.getTrackbarPos('Max Line', 'Tracker')
-    cv2.createTrackbar('rho', 'Tracker', 1, 100, nothing)
-    rho = cv2.getTrackbarPos('rho', 'Tracker')
+#    cv2.createTrackbar('Lo Thresh', 'Tracker', 0, 255, nothing)
+#    low_threshold = cv2.getTrackbarPos('Lo Thresh', 'Tracker')
+#    cv2.createTrackbar('Hi Thresh', 'Tracker', 0, 255, nothing)
+#    high_threshold = cv2.getTrackbarPos('Hi Thresh', 'Tracker')
+#    cv2.createTrackbar('Min Line Length', 'Tracker', 0, 255, nothing)
+#    minLineLength = cv2.getTrackbarPos('Min Line Length', 'Tracker')
+#    cv2.createTrackbar('Max Line Gap', 'Tracker', 1, 20, nothing)
+#    maxLineGap = cv2.getTrackbarPos('Max Line Gap', 'Tracker')
+#    cv2.createTrackbar('rho', 'Tracker', 1, 100, nothing)
+#    rho = cv2.getTrackbarPos('rho', 'Tracker')
 #    cv2.createTrackbar('theta', 'Tracker', 1, 360, nothing)
 #    theta = cv2.getTrackbarPos('theta', 'Tracker')
 
+    cv2.createTrackbar('Lo Thresh', "Camera", 0, 255, nothing)
+    low_threshold = cv2.getTrackbarPos('Lo Thresh', "Camera")
+    cv2.createTrackbar('Hi Thresh', "Camera", 0, 255, nothing)
+    high_threshold = cv2.getTrackbarPos('Hi Thresh', "Camera")
+    cv2.createTrackbar('Min Line Length', "Camera", 0, 255, nothing)
+    minLineLength = cv2.getTrackbarPos('Min Line Length', "Camera")
+    cv2.createTrackbar('Max Line Gap', "Camera", 3, 20, nothing)
+    maxLineGap = cv2.getTrackbarPos('Max Line Gap', "Camera")
+    cv2.createTrackbar('rho', "Camera", 1, 100, nothing)
+    rho = cv2.getTrackbarPos('rho', "Camera")
 
 
     frame=img
@@ -58,8 +68,9 @@ while(True):
         ignore_mask_color = 255
     
     #filling pixels inside the polygon defined by "vertices" with the fill color    
-    # screen is 960W, 540H
-    vertices = np.array( [[[250,250],[50,550],[950,550],[750,250]]], dtype=np.int32 )
+    # screen is 960W, 540H  (640, 480)
+#    vertices = np.array( [[[250,250],[50,550],[950,550],[750,250]]], dtype=np.int32 )
+    vertices = np.array( [[[319,240],[50,480],[590,480],[321,240]]], dtype=np.int32 )  # This is a 640x480 centered triangle
     cv2.fillPoly(mask, vertices, ignore_mask_color)
 
     masked_image = cv2.bitwise_and(img, mask)
@@ -112,9 +123,9 @@ while(True):
     cv2.line(frame, (r_avg_x1, y_min), (r_avg_x2, y_max), [0, 0, 255], thickness)    
 
 
-#    cv2.imshow("Camera",frame)
+    cv2.imshow("Camera",frame)
 #    cv2.imshow('Tracker', masked_image)
-    cv2.imshow("Camera", img)
+#    cv2.imshow('', mask) # Use this to show the triangle
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
