@@ -1,3 +1,9 @@
+# Daniel Velazquez
+# May 2017
+# Based in many of the Udacity's Self Driving Car Nano Degree Students
+# http://davidlichtenberg.com/articles/2017-03/lane-detection
+# Others
+
 import numpy as np
 import cv2
 
@@ -106,9 +112,9 @@ while(True):
     cv2.line(frame, (r_avg_x1, y_min), (r_avg_x2, y_max), [0, 0, 255], thickness)    
 
 
-    cv2.imshow("Camera",frame)
-    cv2.imshow('Tracker', masked_image)
-#    cv2.imshow("Camera", img)
+#    cv2.imshow("Camera",frame)
+#    cv2.imshow('Tracker', masked_image)
+    cv2.imshow("Camera", img)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
