@@ -23,7 +23,7 @@ theta = 180
 cv2.namedWindow("Camera", cv2.WND_PROP_FULLSCREEN);
 cv2.setWindowProperty("Camera", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN);
 
-cv2.namedWindow('Tracker')
+#cv2.namedWindow('Tracker')
 
 while(True):
     # Capture frame-by-frame
@@ -121,7 +121,10 @@ while(True):
 
     cv2.line(frame, (l_avg_x1, y_min), (l_avg_x2, y_max), [0, 0, 255], thickness)
     cv2.line(frame, (r_avg_x1, y_min), (r_avg_x2, y_max), [0, 0, 255], thickness)    
-
+    
+    # base lines in the background to check alignment
+    cv2.line(frame, (150,350), (0, 480),[0, 255, 0], 2)
+    cv2.line(frame, (490,350), (640, 480),[0, 255, 0], 2)
 
     cv2.imshow("Camera",frame)
 #    cv2.imshow('Tracker', masked_image)
