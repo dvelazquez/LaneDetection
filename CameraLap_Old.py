@@ -1,8 +1,7 @@
 # Daniel Velazquez
-# Oct 2018
-# Based in many of the Udacity's Self Driving Car Nano Degree Students Code
+# May 2017
+# Based in many of the Udacity's Self Driving Car Nano Degree Students
 # http://davidlichtenberg.com/articles/2017-03/lane-detection
-# and Ross Kippenbrock's file:///home/daniel/Desktop/finding-lane-lines-pydata-berlin-2017.pdf
 # Others
 
 import numpy as np
